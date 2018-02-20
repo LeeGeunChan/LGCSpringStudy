@@ -107,7 +107,7 @@
 							<!-- <div class="price">$200</div> -->
 							<a href="">
 								<img class="card-img-top img-fluid" 
-									src="images/products/products-1.jpg" alt="Card image cap">
+									src="" alt="Card image cap">
 							</a>
 						</div>
 						<div class="card-body">
@@ -152,7 +152,7 @@
 							<!-- <div class="price">$200</div> -->
 							<a href="">
 								<img class="card-img-top img-fluid" 
-									src="images/products/products-2.jpg" alt="Card image cap">
+									src="" alt="Card image cap">
 							</a>
 						</div>
 						<div class="card-body">
@@ -203,7 +203,7 @@
 							<!-- <div class="price">$200</div> -->
 							<a href="">
 								<img class="card-img-top img-fluid" 
-									src="images/products/products-3.jpg" alt="Card image cap">
+									src="" alt="Card image cap">
 							</a>
 						</div>
 						<div class="card-body">
