@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springfinal.lgcbbs.mapper.BoardMapper" >
+
+	<select id="boardList" resultType="Board" parameterType="hashmap">
+		SELECT 
+			no, 
+			title, 
+			writer, 
+			content, 
+			reg_date AS regDate,
+			read_count AS readCount,
+			pass,
+			file1 
+		FROM springbbs
+		<where>	
+			<if test="type == 'title'">
+				title LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'writer'">
+				writer LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'content'">
+				content LIKE CONCAT('%', #{keyword}, '%')
+			</if>	
+		</where>
+		ORDER BY no DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+
+	<select id="getBoardCount" parameterType="hashmap" resultType="int">
+		SELECT 
+			COUNT(no) 
+		FROM springbbs
+		<where>	
+			<if test="type == 'title'">
+				title LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'writer'">
+				writer LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'content'">
+				content LIKE CONCAT('%', #{keyword}, '%')
+			</if>	
+		</where>	
+	</select>
+
+	<select id="getBoard" resultType="Board" resultMap="boardResultMap">
+		SELECT 
+			* 
+		FROM springbbs 
+		WHERE no = #{no}
+	</select>
+
+	<insert id="insertBoard" parameterType="Board"
+		useGeneratedKeys="true" keyProperty="no">
+		INSERT INTO springbbs(title, writer, content, 
+				reg_date, read_count, pass, file1)
+				
+			VALUES(#{title}, #{writer}, #{content}, 
+				SYSDATE(), #{readCount}, #{pass}, #{file1})
+	</insert>
+
+	<select id="isPassCheck" resultType="String">
+		SELECT 
+			pass
+		FROM springbbs
+		WHERE no = #{no}
+	</select>
+
+	<update id="updateBoard" parameterType="Board">
+		UPDATE springbbs 
+			SET title = #{title}, content = #{content},
+				reg_date = SYSDATE()
+		WHERE no = #{no}
+	</update>
+
+	<delete id="deleteBoard">
+		DELETE FROM springbbs
+		WHERE no = #{no}
+	</delete>
+
+	<update id="incrementReadCount">
+		UPDATE springbbs
+			SET read_count = read_count + 1
+		WHERE no = #{no}
+	</update>
+	
+	<insert id="insertFiles" parameterType="FileName"
+		useGeneratedKeys="true" keyProperty="no">
+		INSERT INTO files(file2, bbs_no)
+			VALUES
+				<foreach collection="list" item="fileName" separator=",">
+					(#{fileName.file2}, #{fileName.bbsNo})
+				</foreach>
+	</insert>
+	
+	<select id="replyList" resultType="Reply">
+		SELECT 
+			no,
+			bbs_no AS bbsNo,
+			reply_content AS replyContent,
+			reply_writer AS replyWriter,
+			reg_date AS regDate
+		FROM reply
+		WHERE bbs_no = #{no}
+			ORDER BY no DESC
+	</select>
+	
+	<update id="updateRecommend">
+		UPDATE springbbs
+			SET
+			<if test="recommend == 'recommend'">		
+				recommend=recommend + 1
+			</if>
+			<if test="recommend == 'thank'">
+				thank = thank + 1
+			</if>
+		WHERE no = #{no}
+	</update>
+	
+	<select id="getRecommend" resultType="Board">
+		SELECT recommend, thank
+		FROM springbbs
+		WHERE no = #{no}
+	</select>
+	
+	<insert id="addReply" parameterType="Reply">
+		INSERT INTO reply(bbs_no, reply_content, reply_writer, reg_date)
+		VALUES(#{bbsNo}, #{replyContent}, #{replyWriter}, SYSDATE())
+	</insert>
+	
+	<update id="updateReply" parameterType="Reply">
+		UPDATE reply
+			SET reply_content = #{replyContent}, 
+				reg_date = SYSDATE()
+		WHERE no = #{no}
+	</update>
+	
+	<delete id="deleteReply">
+		DELETE FROM reply
+		WHERE no = #{no}
+	</delete>	
+
+	<resultMap id="boardResultMap" type="Board">
+		<id property="no" column="no" />
+		<result property="title" column="title" />
+		<result property="writer" column="writer" />
+		<result property="content" column="content" />
+		<result property="regDate" column="reg_date" />
+		<result property="regCount" column="reg_count" />
+		<result property="pass" column="pass" />
+		<result property="file1" column="file1" />
+	</resultMap>
+
+</mapper>	
+
+
+
