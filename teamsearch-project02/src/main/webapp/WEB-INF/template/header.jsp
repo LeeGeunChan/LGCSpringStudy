@@ -18,7 +18,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav ml-auto main-nav ">
 							<li class="nav-item active">
-								<a class="nav-link" href="index.html">Home</a>
+								<a class="nav-link" href="index">Home</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="#" 
@@ -31,8 +31,17 @@
 									<a class="dropdown-item" href="#"> HouseMate 찾기 </a>
 								</div>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="dashboard.html"> 매매 </a>
+							<li class="nav-item  dropdown dropdown-slide">
+								<a class="nav-link dropdown-toggle" href="" 
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									매 매 <span><i class="fa fa-angle-down"></i></span>
+								</a>
+								<!-- Dropdown list -->
+								<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="trade">아파트</a>
+									<a class="dropdown-item" href="#">단독/다가구</a>
+									<a class="dropdown-item" href="#">연립/다세대</a>
+								</div>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,8 +49,15 @@
 								</a>
 								<!-- Dropdown list -->
 								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">전세</a>
-									<a class="dropdown-item" href="#">월세</a>
+									전세<hr>
+									<a class="dropdown-item" href="#">아파트</a>
+									<a class="dropdown-item" href="#">단독/다가구</a>
+									<a class="dropdown-item" href="#">연립/다세대</a>
+									<br>
+									월세<hr>
+									<a class="dropdown-item" href="#">아파트</a>
+									<a class="dropdown-item" href="#">단독/다가구</a>
+									<a class="dropdown-item" href="#">연립/다세대</a>
 								</div>
 							</li>
 							<li class="nav-item">
