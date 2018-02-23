@@ -2,7 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.springfinal.lgcbbs.mapper.BoardMapper" >
+<mapper namespace="com.teamsearch.project02.mapper.TradeMapper" >
+
+	<select id="aptTradeList" resultType="AptSells" parameterType="hashmap">
+		SELECT
+			apt_name as aptName,
+			apt_selltype as aptSellType,
+			apt_price as aptPrice,
+			apt_sarea as aptSArea,
+			apt_uarea as aptUArea,
+			apt_curfloor as aptCurFloor,
+			apt_totfloor as aptTotFloor,
+			apt_regdate as aptRegDate,
+			apt_dealcomp aptDealComp
+		FROM apt_sells
+		<where>
+			apt_selltype LIKE '매매'
+			<where>
+				apt_address1 LIKE CONCAT('%', #{dong}, '%')
+			</where>
+		</where>
+				
+	</select>
 
 	<select id="boardList" resultType="Board" parameterType="hashmap">
 		SELECT 
