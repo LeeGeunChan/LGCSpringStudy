@@ -6,7 +6,7 @@ use spring;
 
 DROP TABLE apt_trade;
 CREATE TABLE apt_trade(
-  trade_id integer AUTO_INCREMENT PRIMARY KEY,
+  apt_trade_id integer AUTO_INCREMENT PRIMARY KEY,
   address1 varchar(100),
   address2 varchar(50),
   area float,
@@ -21,7 +21,7 @@ select * from apt_trade where address1 like "%삼성%";
 
 DROP TABLE apt_rent;
 CREATE TABLE apt_rent(
-  rent_id integer AUTO_INCREMENT PRIMARY KEY,
+  apt_rent_id integer AUTO_INCREMENT PRIMARY KEY,
   address1 varchar(100),
   address2 varchar(50),
   contract_type varchar(10),
@@ -37,7 +37,7 @@ select * from apt_rent where address1 like "%삼성%";
 
 DROP TABLE dd_rent;
 CREATE TABLE dd_rent(
-  rent_id integer AUTO_INCREMENT PRIMARY KEY,
+  dd_rent_id integer AUTO_INCREMENT PRIMARY KEY,
   address1 varchar(100),
   area float,
   contract_type varchar(10),
@@ -53,7 +53,7 @@ select * from dd_rent where address1 like "%삼성%";
 
 DROP TABLE dd_trade;
 CREATE TABLE dd_trade(
-  trade_id integer AUTO_INCREMENT PRIMARY KEY,
+  dd_trade_id integer AUTO_INCREMENT PRIMARY KEY,
   address1 varchar(100),
   htype varchar(20),
   area float,
@@ -68,7 +68,7 @@ select * from dd_trade where address1 like "%삼성%";
 
 DROP TABLE yd_rent;
 CREATE TABLE yd_rent(
-  rent_id integer AUTO_INCREMENT PRIMARY KEY,
+  yd_rent_id integer AUTO_INCREMENT PRIMARY KEY,
   address1 varchar(100),
   address2 varchar(50),
   contract_type varchar(10),
@@ -84,7 +84,7 @@ select * from yd_rent where address1 like "%삼성%";
 
 DROP TABLE yd_trade;
 CREATE TABLE yd_trade(
-  trade_id integer AUTO_INCREMENT PRIMARY KEY,
+  yd_trade_id integer AUTO_INCREMENT PRIMARY KEY,
   address1 varchar(100),
   address2 varchar(50),
   area float,
